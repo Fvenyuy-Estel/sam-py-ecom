@@ -183,9 +183,12 @@ EventBridge event buses are well suited for many-to-many routing of events betwe
 
 **Summary**
 
-In summary, AWS EventBridge is a powerful event bus that allows you to easily integrate different systems and services, while AWS SNS is a messaging service that enables you to send messages to a wide range of endpoints and SQS is messaging service that enables you to send, store, and receive messages between different applications and services and decouple and scale them. Both services are highly scalable and reliable, and can be used to build highly responsive and resilient applications. However, depending on the use case, one service may be more appropriate than the other.
+   * In summary, AWS EventBridge is a powerful event bus that allows you to easily integrate different systems and services, while AWS SNS is a messaging service that enables you to send messages to a wide range of endpoints and SQS is messaging service that enables you to send, store, and receive messages between different applications and services and decouple and scale them. 
+   * Both services are highly scalable and reliable, and can be used to build highly responsive and resilient applications. However, depending on the use case, one service may be more appropriate than the other.
 
 ## **Project architecture**
+
+...
 
 # **Phase two**
 
@@ -363,114 +366,112 @@ In this step, you will use the AWS SAM CLI to create a sample Hello World applic
 
 ## **Step two: Build your application**
 
-      In this step, you use the AWS SAM CLI to build your application and prepare for deployment. When you build, the AWS SAM CLI creates a .aws-sam directory and organizes your function dependencies, project code, and project files there.
+In this step, you use the AWS SAM CLI to build your application and prepare for deployment. When you build, the AWS SAM CLI creates a .aws-sam directory and organizes your function dependencies, project code, and project files there.
 
-   **To build your application**
+**To build your application**
       
-      * In your command line, from the python-sam-ecom project directory, run the following:
+* In your command line, from the python-sam-ecom project directory, run the following:
       
-      ```
-      sam build
+```
+   sam build
+```
 
-      ```
+After running the **sam buld**, the following is a shortened example of the .aws-sam directory created by the AWS SAM CLI:
 
-      After running the **sam buld**, the following is a shortened example of the .aws-sam directory created by the AWS SAM CLI:
-
-      ```.aws-sam
-         ├── build
-         │   ├── HelloWorldFunction
-         │   │   ├── __init__.py
-         │   │   ├── app.py
-         │   │   └── requirements.txt
-         │   └── template.yaml
-         └── build.toml
-      ```
+```.aws-sam
+   ├── build
+   │   ├── HelloWorldFunction
+   │   │   ├── __init__.py
+   │   │   ├── app.py
+   │   │   └── requirements.txt
+   │   └── template.yaml
+   └── build.toml
+```
       
-      Some important files to highlight:
+Some important files to highlight:
 
-         * build/HelloWorldFunction – Contains your Lambda function code and dependencies. The AWS SAM CLI creates a directory for each function in your application.
+   * build/HelloWorldFunction – Contains your Lambda function code and dependencies. The AWS SAM CLI creates a directory for each function in your application.
 
-         * build/template.yaml – Contains a copy of your AWS SAM template that is referenced by AWS CloudFormation at deployment.
+   * build/template.yaml – Contains a copy of your AWS SAM template that is referenced by AWS CloudFormation at deployment.
 
-         * build.toml – Configuration file that stores default parameter values referenced by the AWS SAM CLI when building and deploying your application.
+   * build.toml – Configuration file that stores default parameter values referenced by the AWS SAM CLI when building and deploying your application.
 
-      You are now ready to deploy your application to the AWS Cloud.
+You are now ready to deploy your application to the AWS Cloud.
 
 ## **Step three: Deploy your application to the AWS Cloud**
 
-   In this step, you use the AWS SAM CLI to deploy your application to the AWS Cloud. The AWS SAM CLI will do the following:
+In this step, you use the AWS SAM CLI to deploy your application to the AWS Cloud. The AWS SAM CLI will do the following:
 
-      * Guide you through configuring your application settings for deployment.
+* Guide you through configuring your application settings for deployment.
 
-      * Upload your application files to Amazon Simple Storage Service (Amazon S3).
+* Upload your application files to Amazon Simple Storage Service (Amazon S3).
 
-      * Transform your AWS SAM template into an AWS CloudFormation template. It then uploads your template to the AWS CloudFormation service to provision your AWS resources.
+* Transform your AWS SAM template into an AWS CloudFormation template. It then uploads your template to the AWS CloudFormation service to provision your AWS resources.
 
-   **To deploy your application**
+**To deploy your application**
 
-   2. In your command line, from the python-sam-ecom project directory, run the following:
-   
-      ```
-         sam deploy --guided
+1. In your command line, from the python-sam-ecom project directory, run the following:
 
-      ```
+  ```
+     sam deploy --guided
+  ```
 
-   Follow the AWS SAM CLI interactive flow to configure your application settings. Configure the following:
+Follow the AWS SAM CLI interactive flow to configure your application settings. Configure the following:
 
-      * The AWS CloudFormation stack name – A stack is a collection of AWS resources that you can manage as a single unit.
+* The AWS CloudFormation stack name – A stack is a collection of AWS resources that you can manage as a single unit.
 
-      * The AWS Region to deploy your AWS CloudFormation stack to.
+* The AWS Region to deploy your AWS CloudFormation stack to.
 
-      * For this tutorial, opt out of confirming changes before deploy.
+* For this tutorial, opt out of confirming changes before deploy.
 
-      * Allow IAM role creation – This lets AWS SAM create the IAM role necessary for your API Gateway resource and Lambda function resource to interact.
+* Allow IAM role creation – This lets AWS SAM create the IAM role necessary for your API Gateway resource and Lambda function resource to interact.
 
-      * For this tutorial, opt out of disabling rollback.
+* For this tutorial, opt out of disabling rollback.
 
-      * Allow HelloWorldFunction without authorization defined – This message displays because your API Gateway endpoint is configured to be publicly accessible, without authorization. Since this is the intended configuration for your Hello World application, allow the AWS SAM CLI to continue.
+* Allow HelloWorldFunction without authorization defined – This message displays because your API Gateway endpoint is configured to be publicly accessible, without authorization. Since this is the intended configuration for your Hello World application, allow the AWS SAM CLI to continue.
 
-      * Save arguments to configuration file – This will update your application’s samconfig.toml file with your deployment preferences.
+* Save arguments to configuration file – This will update your application’s samconfig.toml file with your deployment preferences.
 
-      * Select the default configuration file name.
+* Select the default configuration file name.
 
-      * Select the default configuration environment.
+* Select the default configuration environment.
 
-   The following is an example output of the sam deploy --guided interactive flow:
+The following is an example output of the sam deploy --guided interactive flow:
 
-      ```
-         python-sam-ecom sam deploy --guided
+```
+   python-sam-ecom sam deploy --guided
 
-         Configuring SAM deploy
-         ======================
+   Configuring SAM deploy
+   ======================
 
-            Looking for config file [samconfig.toml] :  Found
-            Reading default arguments  :  Success
+      Looking for config file [samconfig.toml] :  Found
+      Reading default arguments  :  Success
 
-            Setting default arguments for 'sam deploy'
-            =========================================
-            Stack Name [python-sam-ecom]:
-            AWS Region [us-west-1]:
-            #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
-            Confirm changes before deploy [Y/n]: n
-            #SAM needs permission to be able to create roles to connect to the resources in your template
-            Allow SAM CLI IAM role creation [Y/n]: 
-            #Preserves the state of previously provisioned resources when an operation fails
-            Disable rollback [y/N]: 
-            HelloWorldFunction may not have authorization defined, Is this okay? [y/N]: y
-            Save arguments to configuration file [Y/n]: 
-            SAM configuration file [samconfig.toml]:
-            SAM configuration environment [default]:
-      ```
+      Setting default arguments for 'sam deploy'
+      =========================================
+      Stack Name [python-sam-ecom]:
+      AWS Region [us-west-1]:
+      #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
+      Confirm changes before deploy [Y/n]: n
+      #SAM needs permission to be able to create roles to connect to the resources in your template
+      Allow SAM CLI IAM role creation [Y/n]: 
+      #Preserves the state of previously provisioned resources when an operation fails
+      Disable rollback [y/N]: 
+      HelloWorldFunction may not have authorization defined, Is this okay? [y/N]: y
+      Save arguments to configuration file [Y/n]: 
+      SAM configuration file [samconfig.toml]:
+      SAM configuration environment [default]:
+```
 
-   3. The AWS SAM CLI deploys your application by doing the following:
+1. The AWS SAM CLI deploys your application by doing the following:
 
-      * The AWS SAM CLI creates an Amazon S3 bucket and uploads your .aws-sam directory.
+* The AWS SAM CLI creates an Amazon S3 bucket and uploads your .aws-sam directory.
 
-      * The AWS SAM CLI transforms your AWS SAM template into AWS CloudFormation and uploads it to the AWS CloudFormation service.
+* The AWS SAM CLI transforms your AWS SAM template into AWS CloudFormation and uploads it to the AWS CloudFormation service.
 
-      * AWS CloudFormation provisions your resources.
+* AWS CloudFormation provisions your resources.
 
-   With all that set, your application is now deployed and running in the AWS Cloud!
+With all that set, your application is now deployed and running in the AWS Cloud!
 
 ## **Step four: Run your application**
 
@@ -480,130 +481,123 @@ In this step, you will send a GET request to your API endpoint and see your Lamb
 
 4. From the information displayed by the AWS SAM CLI in the previous step, locate the Outputs section. In this section, locate your HelloWorldApi resource to find your HTTP endpoint value. The following is an example output:
 
-   ```
-      ----------------------------------------------------------------------------------------------------------------------------------------------
-      Outputs
-      ----------------------------------------------------------------------------------------------------------------------------------------------
-      ...
-      Key                 HelloWorldApi
-      Description         API Gateway endpoint URL for Prod stage for Hello World function
-      Value               https://ets1gv8lxi.execute-api.us-west-2.amazonaws.com/Prod/hello/
-      ...
-      ----------------------------------------------------------------------------------------------------------------------------------------------
-   ```
+```
+   ----------------------------------------------------------------------------------------------------------------------------------------------
+   Outputs
+   ----------------------------------------------------------------------------------------------------------------------------------------------
+   ...
+   Key                 HelloWorldApi
+   Description         API Gateway endpoint URL for Prod stage for Hello World function
+   Value               https://ets1gv8lxi.execute-api.us-west-2.amazonaws.com/Prod/hello/
+   ...
+   ----------------------------------------------------------------------------------------------------------------------------------------------
+```
 
-   5. Alternatively, you can use the sam list endpoints --output json command to get this information. The following is an example output:
+1. Alternatively, you can use the sam list endpoints --output json command to get this information. The following is an example output:
 
-      ```
-         sam list endpoints --output json
-         2023-03-15 12:39:19 Loading policies from IAM...
-         2023-03-15 12:39:25 Finished loading policies from IAM.
-         [
-         {
-            "LogicalResourceId": "HelloWorldFunction",
-            "PhysicalResourceId": "python-sam-ecom-HelloWorldFunction-yQDNe17r9maD",
-            "CloudEndpoint": "-",
-            "Methods": "-"
-         },
-         {
-            "LogicalResourceId": "ServerlessRestApi",
-            "PhysicalResourceId": "ets1gv8lxi",
-            "CloudEndpoint": [
-               "https://ets1gv8lxi.execute-api.us-west-2.amazonaws.com/Prod",
-               "https://ets1gv8lxi.execute-api.us-west-2.amazonaws.com/Stage"
-            ],
-            "Methods": [
-               "/hello['get']"
-            ]
-         }
+   ```
+      sam list endpoints --output json
+      2023-03-15 12:39:19 Loading policies from IAM...
+      2023-03-15 12:39:25 Finished loading policies from IAM.
+      [
+      {
+         "LogicalResourceId": "HelloWorldFunction",
+         "PhysicalResourceId": "python-sam-ecom-HelloWorldFunction-yQDNe17r9maD",
+         "CloudEndpoint": "-",
+         "Methods": "-"
+      },
+      {
+         "LogicalResourceId": "ServerlessRestApi",
+         "PhysicalResourceId": "ets1gv8lxi",
+         "CloudEndpoint": [
+            "https://ets1gv8lxi.execute-api.us-west-2.amazonaws.com/Prod",
+            "https://ets1gv8lxi.execute-api.us-west-2.amazonaws.com/Stage"
+         ],
+         "Methods": [
+            "/hello['get']"
          ]
+      }
+      ]
+   ```
 
-      ```
-
-   **To invoke your function**
-      
-      * Using your browser or the command line, send a GET request to your API endpoint. The following is an example using the curl command:
+**To invoke your function**
    
-      ```
-         curl https://ets1gv8lxi.execute-api.us-west-2.amazonaws.com/Prod/hello/
-         {"message": "hello world"}
+* Using your browser or the command line, send a GET request to your API endpoint. The following is an example using the curl command:
 
-      ```
-   ---
-
-
-
+```
+   curl https://ets1gv8lxi.execute-api.us-west-2.amazonaws.com/Prod/hello/
+   {"message": "hello world"}
+```
 
 # **2. A brief explanation of the AWS SAM template.yaml file, functions, API gatways and how they all function**
 
-   ## **AWS SAM template.yaml file**
+## **AWS SAM template.yaml file**
         
-      After initializing and deploying your application, you will have a template.yaml file as below:
+After initializing and deploying your application, you will have a template.yaml file as below:
 
-      ```
-         AWSTemplateFormatVersion: '2010-09-09'
-         Transform: AWS::Serverless-2016-10-31
-         Description: Sample SAM Template for python-sam-ecom
+```
+   AWSTemplateFormatVersion: '2010-09-09'
+   Transform: AWS::Serverless-2016-10-31
+   Description: Sample SAM Template for python-sam-ecom
 
-         # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
-         Globals:
-            Function:
-               Timeout: 3
-               MemorySize: 128
-         
-         Resources:
+   # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+   Globals:
+      Function:
+         Timeout: 3
+         MemorySize: 128
+   
+   Resources:
 
-            HelloWorldFunction:
-               Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+      HelloWorldFunction:
+         Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+         Properties:
+            CodeUri: hello_world/
+            Handler: app.lambda_handler
+            Runtime: python3.9
+            Architectures:
+            - x86_64
+            Events:
+            HelloWorld:
+               Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
                Properties:
-                  CodeUri: hello_world/
-                  Handler: app.lambda_handler
-                  Runtime: python3.9
-                  Architectures:
-                  - x86_64
-                  Events:
-                  HelloWorld:
-                     Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-                     Properties:
-                        Path: /hello
-                        Method: get
+                  Path: /hello
+                  Method: get
 
-         Outputs:
-            # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
-            # Find out more about other implicit resources you can reference within SAM
-            # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-            HelloWorldApi:
-               Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-               Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
-            HelloWorldFunction:
-               Description: "Hello World Lambda Function ARN"
-               Value: !GetAtt HelloWorldFunction.Arn
-            HelloWorldFunctionIamRole:
-               Description: "Implicit IAM Role created for Hello World function"
-               Value: !GetAtt HelloWorldFunctionRole.Arn
-         
-      ```  
-      
-      AWSTemplateFormatVersion: '2010-09-09'
-      Transform: AWS::Serverless-2016-10-31
-      Description: Sample SAM Template for python-sam-ecom
+   Outputs:
+      # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+      # Find out more about other implicit resources you can reference within SAM
+      # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+      HelloWorldApi:
+         Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+         Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
+      HelloWorldFunction:
+         Description: "Hello World Lambda Function ARN"
+         Value: !GetAtt HelloWorldFunction.Arn
+      HelloWorldFunctionIamRole:
+         Description: "Implicit IAM Role created for Hello World function"
+         Value: !GetAtt HelloWorldFunctionRole.Arn
+```  
 
-      * AWSTemplateFormatVersion just definds the version 
-      * Transform is needed to tell AWS Cloudformation that this is a serverless transformation 
-      * Description simply describes the project 
-      * Globals:
-        
-         * Sometimes resources that you declare in an AWS SAM template have common configurations. For example, you might have an application with multiple AWS::Serverless::Function resources that have identical Runtime, Memory, VPCConfig, Environment, and Cors configurations. Instead of duplicating this information in every resource, you can declare them once in the Globals section and let your resources inherit them. 
-         
-         * The Globals section is supported by the AWS::Serverless::Function, AWS::Serverless::Api, AWS::Serverless::HttpApi, and AWS::Serverless::SimpleTable resources.
-     
-      * Resources: 
-      
-         * The stack resources and their properties, such as an Amazon Elastic Compute Cloud (Amazon EC2) instance or an Amazon Simple Storage Service (Amazon S3) bucket. You can refer to resources in the Resources and Outputs sections of the template.
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Sample SAM Template for python-sam-ecom
 
-         * This section is similar to the Resources section of AWS CloudFormation templates. In AWS SAM templates, this section can contain AWS SAM resources in addition to AWS CloudFormation resources. 
-         
-         * In general, all AWS resources that are to be used in your project are defined in this section.
+* AWSTemplateFormatVersion just definds the version 
+* Transform is needed to tell AWS Cloudformation that this is a serverless transformation 
+* Description simply describes the project 
+* Globals:
+   
+   * Sometimes resources that you declare in an AWS SAM template have common configurations. For example, you might have an application with multiple AWS::Serverless::Function resources that have identical Runtime, Memory, VPCConfig, Environment, and Cors configurations. Instead of duplicating this information in every resource, you can declare them once in the Globals section and let your resources inherit them. 
+   
+   * The Globals section is supported by the AWS::Serverless::Function, AWS::Serverless::Api, AWS::Serverless::HttpApi, and AWS::Serverless::SimpleTable resources.
+
+* Resources: 
+
+   * The stack resources and their properties, such as an Amazon Elastic Compute Cloud (Amazon EC2) instance or an Amazon Simple Storage Service (Amazon S3) bucket. You can refer to resources in the Resources and Outputs sections of the template.
+
+   * This section is similar to the Resources section of AWS CloudFormation templates. In AWS SAM templates, this section can contain AWS SAM resources in addition to AWS CloudFormation resources. 
+   
+   * In general, all AWS resources that are to be used in your project are defined in this section.
    
    
       
