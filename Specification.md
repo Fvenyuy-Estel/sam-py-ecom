@@ -3,7 +3,6 @@
 ### Modern Serverless application development with AWS SAM, Vuejs, Flutter, AWS API gateway, EventBridge pipes, SNS, SQS and Python
 
 ## **Description:**
----
 
 In this course you will be able to build an e-commerce application using:
 
@@ -56,7 +55,6 @@ In this phase we are going to be focusing on:
 If you are already familiar with the above terms you might want to consider moving to phase two.
 
 ## **SQS**
----
 
 **Pattern**
    - Queues
@@ -110,7 +108,6 @@ If you are already familiar with the above terms you might want to consider movi
    - A disadvantage of this pattern is that business transaction actions are synchronous. Even though the calling system receives a response, some part of the transaction might still continue to be processed by downstream systems.
 
 ## **SNS**
----
 
 **Pattern** 
 
@@ -169,7 +166,7 @@ SQS : All the consumers are supposed to be identical and hence process the messa
 SNS : All the consumers are (supposed to be) processing the messages in different ways.
 
 ## **EventBridge**
----
+
 **Pattern**
   - Message bus
   - Events
@@ -189,7 +186,6 @@ EventBridge event buses are well suited for many-to-many routing of events betwe
 In summary, AWS EventBridge is a powerful event bus that allows you to easily integrate different systems and services, while AWS SNS is a messaging service that enables you to send messages to a wide range of endpoints and SQS is messaging service that enables you to send, store, and receive messages between different applications and services and decouple and scale them. Both services are highly scalable and reliable, and can be used to build highly responsive and resilient applications. However, depending on the use case, one service may be more appropriate than the other.
 
 ## **Project architecture**
----
 
 # **Phase two**
 
@@ -213,7 +209,6 @@ This phase consist of the actual development of the application and we are going
    ...
 
    ## **AWS SAM prerequisites**
-   ---
    
    Before we begin you have to make sure you have the following things checked.
 
@@ -227,144 +222,145 @@ This phase consist of the actual development of the application and we are going
 
 # **1. Initialize, deploy and run an AWS SAM hello world project**
 
-   ## **Step one: Initialize the sample Hello World application**
-   ---
+## **Step one: Initialize the sample Hello World application**
 
-      In this step, you will use the AWS SAM CLI to create a sample Hello World application project on your local machine.
+In this step, you will use the AWS SAM CLI to create a sample Hello World application project on your local machine.
+
+**To initialize the sample Hello World application**
+
+1. Open up the folder directory in which you would want your SAM application to be created in the editor of your choice be it sublime text, VS code etc. But in my case am using VS code.
+2. In your command line, run the following
       
-      **To initialize the sample Hello World application**
+```
+   sam init
 
-      1. Open up the folder directory in which you would want your SAM application to be created in the editor of your choice be it sublime text, VS code etc. But in my case am using VS code.
-      2. In your command line, run the following
+```
       
-         ```
-            sam init
+1. The AWS SAM CLI will guide you through initializing a new application. Configure the following:
 
-         ```
-      
-      3. The AWS SAM CLI will guide you through initializing a new application. Configure the following:
+   * Select AWS Quick Start Templates to choose a starting template.
 
-         * Select AWS Quick Start Templates to choose a starting template.
+   * Choose the Hello World Example template and download it.
 
-         * Choose the Hello World Example template and download it.
+   * Use the Python runtime and zip package type.
 
-         * Use the Python runtime and zip package type.
+   * For this tutorial, opt out of AWS X-Ray tracing.
 
-         * For this tutorial, opt out of AWS X-Ray tracing.
+   * For this tutorial, opt out of monitoring with Amazon CloudWatch Application Insights. 
 
-         * For this tutorial, opt out of monitoring with Amazon CloudWatch Application Insights. 
+   * Name your application as python-sam-ecom.
 
-         * Name your application as python-sam-ecom.
+   * To use the AWS SAM CLI interactive flow:
 
-         * To use the AWS SAM CLI interactive flow:
+      * Brackets ([ ]) indicate default values. Leave your answer blank to select the default value.
 
-            * Brackets ([ ]) indicate default values. Leave your answer blank to select the default value.
+      * Enter y for yes, and n for no.
 
-            * Enter y for yes, and n for no.
-
-         * The following is an example of the sam init interactive flow:
+   * The following is an example of the sam init interactive flow:
 
          
-         ```
-            sam init
-            ...
-            Which template source would you like to use?
-               1 - AWS Quick Start Templates
-               2 - Custom Template Location
-            Choice: 1
+   ```
+      sam init
+      ...
+      Which template source would you like to use?
+         1 - AWS Quick Start Templates
+         2 - Custom Template Location
+      Choice: 1
 
-            Choose an AWS Quick Start application template
-               1 - Hello World Example
-               2 - Multi-step workflow
-               3 - Serverless API
-               4 - Scheduled task
-               5 - Standalone function
-               6 - Data processing
-               7 - Hello World Example With Powertools
-               8 - Infrastructure event management
-               9 - Serverless Connector Hello World Example
-               10 - Multi-step workflow with Connectors
-               11 - Lambda EFS example
-               12 - DynamoDB Example
-               13 - Machine Learning
-            Template: 1
+      Choose an AWS Quick Start application template
+         1 - Hello World Example
+         2 - Multi-step workflow
+         3 - Serverless API
+         4 - Scheduled task
+         5 - Standalone function
+         6 - Data processing
+         7 - Hello World Example With Powertools
+         8 - Infrastructure event management
+         9 - Serverless Connector Hello World Example
+         10 - Multi-step workflow with Connectors
+         11 - Lambda EFS example
+         12 - DynamoDB Example
+         13 - Machine Learning
+      Template: 1
 
-            Use the most popular runtime and package type? (Python and zip) [y/N]: y
+      Use the most popular runtime and package type? (Python and zip) [y/N]: y
 
-            Would you like to enable X-Ray tracing on the function(s) in your application?  [y/N]: 
+      Would you like to enable X-Ray tracing on the function(s) in your application?  [y/N]: 
 
-            Would you like to enable monitoring using CloudWatch Application Insights?
-            For more info, please view https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-application-insights.html [y/N]: 
+      Would you like to enable monitoring using CloudWatch Application Insights?
+      For more info, please view https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-application-insights.html [y/N]: 
 
-            Project name [python-sam-ecom]: python-sam-ecom
+      Project name [python-sam-ecom]: python-sam-ecom
 
-         ```
+   ```
 
-      4. The AWS SAM CLI downloads your starting template and creates the application project directory structure on your local machine. The following is an example of the AWS SAM CLI output:
+   1. The AWS SAM CLI downloads your starting template and creates the application project directory structure on your local machine. The following is an example of the AWS SAM CLI output:
 
-         ```
-            Cloning from https://github.com/aws/aws-sam-cli-app-templates (process may take a moment)
+   ```
+      Cloning from https://github.com/aws/aws-sam-cli-app-templates (process may take a moment)
 
-            -----------------------
-            Generating application:
-            -----------------------
-            Name: python-sam-ecom
-            Runtime: python3.9
-            Architectures: x86_64
-            Dependency Manager: pip
-            Application Template: hello-world
-            Output Directory: .
-            Configuration file: python-sam-ecom/samconfig.toml
+      -----------------------
+      Generating application:
+      -----------------------
+      Name: python-sam-ecom
+      Runtime: python3.9
+      Architectures: x86_64
+      Dependency Manager: pip
+      Application Template: hello-world
+      Output Directory: .
+      Configuration file: python-sam-ecom/samconfig.toml
 
-            Next steps can be found in the README file at python-sam-ecom/README.md
+      Next steps can be found in the README file at python-sam-ecom/README.md
 
-            Commands you can use next
-            =========================
-            [*] Create pipeline: cd python-sam-ecom && sam pipeline init --bootstrap
-            [*] Validate SAM template: cd python-sam-ecom && sam validate
-            [*] Test Function in the Cloud: cd python-sam-ecom && sam sync --stack-name {stack-name} --watch
+      Commands you can use next
+      =========================
+      [*] Create pipeline: cd python-sam-ecom && sam pipeline init --bootstrap
+      [*] Validate SAM template: cd python-sam-ecom && sam validate
+      [*] Test Function in the Cloud: cd python-sam-ecom && sam sync --stack-name {stack-name} --watch
 
-         ```
-      5. From your command line, move to the newly created python-sam-ecom directory. The following is an example of what the AWS SAM CLI has created:
+   ```
+
+   2. From your command line, move to the newly created python-sam-ecom directory. The following is an example of what the AWS SAM CLI has created:
       
-         ```
-            cd python-sam-ecom
+   ```
+      cd python-sam-ecom
 
-            tree
+      tree
 
-            ├── README.md
+      ├── README.md
+      ├── __init__.py
+      ├── events
+      │   └── event.json
+      ├── hello_world
+      │   ├── __init__.py
+      │   ├── app.py
+      │   └── requirements.txt
+      ├── samconfig.toml
+      ├── template.yaml
+      └── tests
+         ├── __init__.py
+         ├── integration
+         │   ├── __init__.py
+         │   └── test_api_gateway.py
+         ├── requirements.txt
+         └── unit
             ├── __init__.py
-            ├── events
-            │   └── event.json
-            ├── hello_world
-            │   ├── __init__.py
-            │   ├── app.py
-            │   └── requirements.txt
-            ├── samconfig.toml
-            ├── template.yaml
-            └── tests
-               ├── __init__.py
-               ├── integration
-               │   ├── __init__.py
-               │   └── test_api_gateway.py
-               ├── requirements.txt
-               └── unit
-                  ├── __init__.py
-                  └── test_handler.py
-                  
-            6 directories, 14 files
-         ```
-      Some important files to highlight:
+            └── test_handler.py
+            
+      6 directories, 14 files
+   ```
 
-         * hello_world/app.py – Contains your Lambda function code.
+   Some important files to highlight:
 
-         * hello_world/requirements.txt – Contains any Python dependencies that your Lambda function requires.
+      * hello_world/app.py – Contains your Lambda function code.
 
-         * samconfig.toml – Configuration file for your application that stores default parameters used by the AWS SAM CLI.
+      * hello_world/requirements.txt – Contains any Python dependencies that your Lambda function requires.
 
-         * template.yaml – The AWS SAM template that contains your application infrastructure code.
+      * samconfig.toml – Configuration file for your application that stores default parameters used by the AWS SAM CLI.
 
-      You now have a completely authored serverless application on your local machine!
+      * template.yaml – The AWS SAM template that contains your application infrastructure code.
+
+   You now have a completely authored serverless application on your local machine!
 
    ## **Step two: Build your application**
 
@@ -413,7 +409,7 @@ This phase consist of the actual development of the application and we are going
 
    **To deploy your application**
 
-   1. In your command line, from the python-sam-ecom project directory, run the following:
+   3. In your command line, from the python-sam-ecom project directory, run the following:
    
       ```
          sam deploy --guided
@@ -467,7 +463,7 @@ This phase consist of the actual development of the application and we are going
             SAM configuration environment [default]:
       ```
 
-   3. The AWS SAM CLI deploys your application by doing the following:
+   4. The AWS SAM CLI deploys your application by doing the following:
 
       * The AWS SAM CLI creates an Amazon S3 bucket and uploads your .aws-sam directory.
 
@@ -483,7 +479,7 @@ This phase consist of the actual development of the application and we are going
 
    **To get your API endpoint value**
 
-   1. From the information displayed by the AWS SAM CLI in the previous step, locate the Outputs section. In this section, locate your HelloWorldApi resource to find your HTTP endpoint value. The following is an example output:
+   5. From the information displayed by the AWS SAM CLI in the previous step, locate the Outputs section. In this section, locate your HelloWorldApi resource to find your HTTP endpoint value. The following is an example output:
 
    ```
       ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -497,7 +493,7 @@ This phase consist of the actual development of the application and we are going
       ----------------------------------------------------------------------------------------------------------------------------------------------
    ```
 
-   2. Alternatively, you can use the sam list endpoints --output json command to get this information. The following is an example output:
+   6. Alternatively, you can use the sam list endpoints --output json command to get this information. The following is an example output:
 
       ```
          sam list endpoints --output json
