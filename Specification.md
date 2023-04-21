@@ -229,14 +229,13 @@ In this step, you will use the AWS SAM CLI to create a sample Hello World applic
 **To initialize the sample Hello World application**
 
 1. Open up the folder directory in which you would want your SAM application to be created in the editor of your choice be it sublime text, VS code etc. But in my case am using VS code.
-2. In your command line, run the following
+2. In your command line, run the following:
       
 ```
    sam init
-
 ```
       
-1. The AWS SAM CLI will guide you through initializing a new application. Configure the following:
+3. The AWS SAM CLI will guide you through initializing a new application. Configure the following:
 
    * Select AWS Quick Start Templates to choose a starting template.
 
@@ -294,7 +293,7 @@ In this step, you will use the AWS SAM CLI to create a sample Hello World applic
 
    ```
 
-   1. The AWS SAM CLI downloads your starting template and creates the application project directory structure on your local machine. The following is an example of the AWS SAM CLI output:
+4. The AWS SAM CLI downloads your starting template and creates the application project directory structure on your local machine. The following is an example of the AWS SAM CLI output:
 
    ```
       Cloning from https://github.com/aws/aws-sam-cli-app-templates (process may take a moment)
@@ -320,7 +319,7 @@ In this step, you will use the AWS SAM CLI to create a sample Hello World applic
 
    ```
 
-   2. From your command line, move to the newly created python-sam-ecom directory. The following is an example of what the AWS SAM CLI has created:
+5. From your command line, move to the newly created python-sam-ecom directory. The following is an example of what the AWS SAM CLI has created:
       
    ```
       cd python-sam-ecom
@@ -362,7 +361,7 @@ In this step, you will use the AWS SAM CLI to create a sample Hello World applic
 
    You now have a completely authored serverless application on your local machine!
 
-   ## **Step two: Build your application**
+## **Step two: Build your application**
 
       In this step, you use the AWS SAM CLI to build your application and prepare for deployment. When you build, the AWS SAM CLI creates a .aws-sam directory and organizes your function dependencies, project code, and project files there.
 
@@ -397,7 +396,7 @@ In this step, you will use the AWS SAM CLI to create a sample Hello World applic
 
       You are now ready to deploy your application to the AWS Cloud.
 
-   ## **Step three: Deploy your application to the AWS Cloud**
+## **Step three: Deploy your application to the AWS Cloud**
 
    In this step, you use the AWS SAM CLI to deploy your application to the AWS Cloud. The AWS SAM CLI will do the following:
 
@@ -409,7 +408,7 @@ In this step, you will use the AWS SAM CLI to create a sample Hello World applic
 
    **To deploy your application**
 
-   3. In your command line, from the python-sam-ecom project directory, run the following:
+   2. In your command line, from the python-sam-ecom project directory, run the following:
    
       ```
          sam deploy --guided
@@ -463,7 +462,7 @@ In this step, you will use the AWS SAM CLI to create a sample Hello World applic
             SAM configuration environment [default]:
       ```
 
-   4. The AWS SAM CLI deploys your application by doing the following:
+   3. The AWS SAM CLI deploys your application by doing the following:
 
       * The AWS SAM CLI creates an Amazon S3 bucket and uploads your .aws-sam directory.
 
@@ -473,13 +472,13 @@ In this step, you will use the AWS SAM CLI to create a sample Hello World applic
 
    With all that set, your application is now deployed and running in the AWS Cloud!
 
-   ## **Step four: Run your application**
+## **Step four: Run your application**
 
-   In this step, you will send a GET request to your API endpoint and see your Lambda function output.
+In this step, you will send a GET request to your API endpoint and see your Lambda function output.
 
-   **To get your API endpoint value**
+**To get your API endpoint value**
 
-   5. From the information displayed by the AWS SAM CLI in the previous step, locate the Outputs section. In this section, locate your HelloWorldApi resource to find your HTTP endpoint value. The following is an example output:
+4. From the information displayed by the AWS SAM CLI in the previous step, locate the Outputs section. In this section, locate your HelloWorldApi resource to find your HTTP endpoint value. The following is an example output:
 
    ```
       ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -493,7 +492,7 @@ In this step, you will use the AWS SAM CLI to create a sample Hello World applic
       ----------------------------------------------------------------------------------------------------------------------------------------------
    ```
 
-   6. Alternatively, you can use the sam list endpoints --output json command to get this information. The following is an example output:
+   5. Alternatively, you can use the sam list endpoints --output json command to get this information. The following is an example output:
 
       ```
          sam list endpoints --output json
