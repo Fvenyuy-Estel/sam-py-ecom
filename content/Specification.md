@@ -289,10 +289,9 @@ In this step, you will use the AWS SAM CLI to create a sample Hello World applic
 
       Would you like to enable X-Ray tracing on the function(s) in your application?  [y/N]: 
 
-      Would you like to enable monitoring using CloudWatch Application Insights?
-      For more info, please view https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-application-insights.html [y/N]: 
+      Would you like to enable monitoring using CloudWatch Application Insights? [y/N]: 
 
-      Project name [python-sam-ecom]: python-sam-ecom
+      Project name [python-sam-ecom]: 
 
    ```
 
@@ -416,7 +415,7 @@ In this step, you use the AWS SAM CLI to deploy your application to the AWS Clou
      sam deploy --guided
   ```
 
-Follow the AWS SAM CLI interactive flow to configure your application settings. Configure the following:
+2. Follow the AWS SAM CLI interactive flow to configure your application settings. Configure the following:
 
 * The AWS CloudFormation stack name – A stack is a collection of AWS resources that you can manage as a single unit.
 
