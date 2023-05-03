@@ -1,4 +1,14 @@
 
+---
+title: 'Title of the page'
+description: 'meta description of the page'
+---
+
+<!-- Content of the page -->
+
+::alert{type="warning"}
+The **alert** component.
+::
 
 <!-- ### Modern Serverless application development with AWS SAM, Vuejs, Flutter, AWS API gateway, EventBridge pipes, SNS, SQS and Python
 
