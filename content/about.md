@@ -1,8 +1,8 @@
 
 
-### Modern Serverless application development with AWS SAM, Vuejs, Flutter, AWS API gateway, EventBridge pipes, SNS, SQS and Python
+<!-- ### Modern Serverless application development with AWS SAM, Vuejs, Flutter, AWS API gateway, EventBridge pipes, SNS, SQS and Python
 
-## **Description:**
+## **Description:** -->
 
 In this course you will be able to build an e-commerce application using:
 
