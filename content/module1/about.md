@@ -6,9 +6,11 @@ description: 'meta description of the page'
 
 <!-- Content of the page -->
 
-::alert{type="warning"}
-The **alert** component.
-::
+``` cpp
+    bool getBit(int num, int i) {
+        return ((num & (1<<i)) != 0);
+    }
+```
 
 <!-- ### Modern Serverless application development with AWS SAM, Vuejs, Flutter, AWS API gateway, EventBridge pipes, SNS, SQS and Python
 
