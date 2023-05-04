@@ -1,4 +1,17 @@
 
+const cars = ["BMW", "Volvo", "Mini"];
+
+let text = "";
+for (let x of cars) {
+  text += x;
+}
+
+const cars = ["BMW", "Volvo", "Mini"];
+
+let text = "";
+for (let x of cars) {
+  text += x;
+}
 
 ### Modern Serverless application development with AWS SAM, Vuejs, Flutter, AWS API gateway, EventBridge pipes, SNS, SQS and Python
 
