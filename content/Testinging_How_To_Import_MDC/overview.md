@@ -6,6 +6,20 @@ description: 'meta description of the page'
 
 <!-- Content of the page -->
 
+
+``` javascript
+    function myFirst() {
+      myDisplayer("Hello");
+    }
+
+    function mySecond() {
+      myDisplayer("Goodbye");
+    }
+
+    mySecond();
+    myFirst();
+```
+
 ``` cpp
     bool getBit(int num, int i) {
         return ((num & (1<<i)) != 0);
@@ -44,6 +58,20 @@ With the following AWS services:
 ---
 
 Hey wassup guys!
+
+```javascript
+    function myDisplayer(some) {
+      document.getElementById("demo").innerHTML = some;
+    }
+
+    function myCalculator(num1, num2) {
+      let sum = num1 + num2;
+      return sum;
+    }
+
+    let result = myCalculator(5, 5);
+    myDisplayer(result);
+```
 
 In this course we are going to be building a modern Serverless application development with AWS SAM, Vuejs, Flutter, AWS API gateway, EventBridge, SNS, SQS and Python. The building process is going to be devided in to two phases which are:
 
